@@ -1,5 +1,6 @@
 //把https://github.com/modood/Administrative-divisions-of-China四级联动（https://raw.githubusercontent.com/modood/Administrative-divisions-of-China/master/dist/pcas.json）转为数据库,精简id
 
+```
 DROP TABLE IF EXISTS `je_region`;
 CREATE TABLE IF NOT EXISTS `je_region` (
 	`region_id` 	smallint(5) unsigned NOT NULL AUTO_INCREMENT 		COMMENT '表示该地区的id',
@@ -13,7 +14,6 @@ CREATE TABLE IF NOT EXISTS `je_region` (
 	UNIQUE KEY `region_name` (`parent_id`,`region_name`),
 	KEY `region_type` (`region_type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='地区列表' AUTO_INCREMENT=1 ;
-
-
+```
 
 sql中包含3级与4级两个表
