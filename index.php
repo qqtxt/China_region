@@ -15,23 +15,23 @@ $china=json_decode(file_get_contents('./4.json'),true);
 //$china[]='香港';$china[]='澳门';$china[]='台湾';
 #print_r($china);exit;
 $i=$id=0;$ii=$iii=$iiii=array();
-$up=go(0,'中国');
+$up=go(0,'中国',0);
 //先入第一级
-$upArr=goKey($china,$up);
-$upArr['香港']=go($up,'香港');
-$upArr['澳门']=go($up,'澳门');
-$upArr['台湾']=go($up,'台湾');
+$upArr=goKey($china,$up,1);
+$upArr['香港']=go($up,'香港',1);
+$upArr['澳门']=go($up,'澳门',1);
+$upArr['台湾']=go($up,'台湾',1);
 
 foreach($china as $k=>$v){
 	//入第二级
-	$uu=goKey($v,$upArr[$k]);//对应$v的$k的id
+	$uu=goKey($v,$upArr[$k],2);//对应$v的$k的id
 	foreach($v as $kk=>$vv){
 		//入第三级
-		$uuu=goKey($vv,$uu[$kk]);
+		$uuu=goKey($vv,$uu[$kk],3);
 		foreach($vv as $kkk=>$vvv){
 			foreach($vvv as $kkkk=>$vvvv){
 				//入第四级
-				go($uuu[$kkk],$vvvv);
+				go($uuu[$kkk],$vvvv,4);
 			}
 		}
 	}
@@ -39,15 +39,15 @@ foreach($china as $k=>$v){
 
 
 //入库
-function go($up,$val){
+function go($up,$val,$region_type){
 	echo $val."<br/>";
-	return db('region')->add(array('parent_id'=>$up,'region_name'=>$val));
+	return db('region')->add(array('parent_id'=>$up,'region_name'=>$val,'region_type'=>$region_type));
 }
-//入库key
-function goKey($arr,$up){
+//入库key  如湖南省=》岳阳市，。。。中的湖南
+function goKey($arr,$up,$region_type){
 	$upArr=array();
 	foreach($arr as $k=>$v){
-		$upArr[$k]=go($up,$k);
+		$upArr[$k]=go($up,$k,$region_type);
 	}
 	return $upArr;
 }
