@@ -1,4 +1,6 @@
-//把https://github.com/modood/Administrative-divisions-of-China四级联动（https://raw.githubusercontent.com/modood/Administrative-divisions-of-China/master/dist/pcas.json）转为数据库,精简id
+1.index.php 把四级联动json转成表
+2.city.php 根据表生成按字母排序的城市.json
+四级联动数据:https://github.com/modood/Administrative-divisions-of-China（https://raw.githubusercontent.com/modood/Administrative-divisions-of-China/master/dist/pcas.json）
 
 ```
 DROP TABLE IF EXISTS `je_region`;

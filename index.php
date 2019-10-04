@@ -3,8 +3,8 @@
 //error_reporting(0);
 define('PRE','je_');
 define('HOST','127.0.0.1');
-define('USER','qqtxt');
-define('PSSS','zhh1981zhh');
+define('USER','qq');
+define('PSSS','zhh');
 define('DB','test_net');
 date_default_timezone_set('PRC');
 define('NOW_TIME',      $_SERVER['REQUEST_TIME']);
